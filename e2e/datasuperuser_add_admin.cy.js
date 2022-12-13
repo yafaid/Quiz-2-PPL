@@ -1,0 +1,21 @@
+describe('data super user', () => {
+  it('login', () => {
+    cy.visit('https://localhost/konseling')
+    cy.get('input[name="username"]').type('admin')
+    cy.get('input[name="password"]').type('admin123')
+    cy.get('button[name="login"]').click() 
+    cy.visit('https://localhost/konseling/admin/index.php')
+    cy.get('a[href="super_user.php"]').click()
+    cy.get('a[id=btn-show]').click()
+    //pembuatan akun admin
+    cy.get('input[name="username"]').type('yanuautomated')
+    cy.get('input[name="password"]').type('yanu')
+    cy.get('input[id="foto"]').selectFile('cypress/fixtures/coba.jpg')
+    cy.get('input[name="nama"]').type('yanu miftahul h')
+    cy.get('select[id=jabatan]').select('Admin').should('have.value','Admin')
+    cy.get('input[name="nohp"]').type('123456778910')
+    cy.get('input[name="nip"]').type('123123123123123')
+    cy.get('button[name="register"]').click()
+    cy.get('a[href="super_user.php"]').click()
+  })
+})
